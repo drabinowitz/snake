@@ -2,13 +2,25 @@ $(document).ready(function(){
 
   var snake = {
 
-    speed : 1,
+    boardCanvas : undefined,
 
-    size : 3,
+    settings : {},
 
     generate : function(){
 
-      this.destroy();
+      snake.boardCanvas = $('#game-board');
+
+      snake.boardCanvas.attr({
+
+        width : snake.settings.boardSize * 100,
+
+        height : snake.settings.boardSize * 100
+
+      });
+
+      snake.boardContext = snake.boardCanvas[0].getContext('2d');
+
+      snake.boardContext.clearRect(0,0,snake.settings.boardSize * 100,snake.settings.boardSize * 100);
 
     },
 
@@ -56,9 +68,7 @@ $(document).ready(function(){
 
   snake.listenTo(siren,"create-snake", function(gameSettings){
 
-    snake.speed = gameSettings.speed || 1;
-
-    snake.size = gameSettings.snakeSize || 3;
+    snake.settings = gameSettings;
 
     snake.generate();
 

@@ -1,26 +1,4 @@
-var siren = {};
-
-_.extend(siren, Backbone.Events);
-
 $(document).ready(function(){
-
-  function generateBoard(boardSize){
-
-    var i = 0;
-
-    var j = 0;
-
-    for (i = 0; i < boardSize; i++){
-
-      $('.game-board tr').append('<td>').attr('class','board-cell').data({
-
-
-
-      })
-
-    }
-
-  }
 
   var game = {
 
@@ -28,7 +6,7 @@ $(document).ready(function(){
 
       speed : 1,
 
-      boardSize : 10,
+      boardSize : 5,
 
       snakeSize : 3
 
@@ -39,8 +17,6 @@ $(document).ready(function(){
   _.extend(game, Backbone.Events);
 
   game.listenTo(siren,"new-game", function(){
-
-    generateBoard( game.settings.boardSize );
 
     siren.trigger("reset-score",game.settings);
 
