@@ -28,7 +28,7 @@ $(document).ready(function(){
 
       });
 
-      $(document).keydown(function(e){
+      $(document).on('keydown',function(e){
 
         if(e.which >= 37 && e.which <= 40){
 
@@ -49,6 +49,8 @@ $(document).ready(function(){
       snake.body = [];
 
       snake.currentDirection = 40;
+
+      $document.off('keydown');
 
     },
 
