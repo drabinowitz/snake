@@ -14,6 +14,8 @@ $(document).ready(function(){
 
     generate : function(){
 
+      snake.destroy();
+
       snake.boardContext.fillStyle="#00FF00";
 
       _.each(_.range(snake.settings.snakeSize),function(value){
@@ -44,7 +46,9 @@ $(document).ready(function(){
 
     destroy : function(){
 
+      snake.body = [];
 
+      snake.currentDirection = 40;
 
     },
 
@@ -108,7 +112,7 @@ $(document).ready(function(){
 
       isOpposite : function(direction){
 
-        if(direction + snake.currentDirection == 77){
+        if( direction + snake.currentDirection == 76 || direction + snake.currentDirection == 78 ){
 
           return true;
 
