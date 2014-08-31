@@ -8,19 +8,19 @@ $(document).ready(function(){
 
       game.settings.boardCanvas.attr({
 
-        width : game.settings.boardSize * 100,
+        width : game.settings.boardSize,
 
-        height : game.settings.boardSize * 100
+        height : game.settings.boardSize
 
       });
 
       game.settings.boardContext = game.settings.boardCanvas[0].getContext('2d');
 
-      game.settings.boardContext.clearRect(0,0,game.settings.boardSize * 100,game.settings.boardSize * 100);
+      game.settings.boardContext.clearRect(0,0,game.settings.boardSize,game.settings.boardSize);
       
-      game.settings.boardContext.fillStyle=game.settings.backgroundColor;
+      game.settings.boardContext.fillStyle = game.settings.backgroundColor;
 
-      game.settings.boardContext.fillRect(0,0,game.settings.boardSize * 100,game.settings.boardSize * 100);
+      game.settings.boardContext.fillRect(0,0,game.settings.boardSize,game.settings.boardSize);
 
     },
 
@@ -36,17 +36,19 @@ $(document).ready(function(){
 
       startingPos : [100,100],
 
-      speed : 1,
+      speed : 3,
 
-      boardSize : 3,
+      boardSize : 300,
 
       snakeSize : 3,
 
-      snakeColor : "#00FF00",
+      snakeColor : "#00ff00",
 
       bodySize : 20,
 
-      appleColor : '#FF0000'
+      growCount : 2,
+
+      appleColor : '#ff0000'
 
     }
 

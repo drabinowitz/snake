@@ -8,6 +8,8 @@ $(document).ready(function(){
 
     body : [],
 
+    currentGrow : 0,
+
     currentDirection : 40,
 
     intervalID : undefined,
@@ -39,6 +41,8 @@ $(document).ready(function(){
         }
 
       });
+
+      snake.placeApple();
 
       snake.move.start(snake.intervalID);
 
@@ -92,17 +96,29 @@ $(document).ready(function(){
 
         }
 
-        snake.intervalID = setInterval(snake.move.continue,snake.settings.speed * 1000);
+        snake.intervalID = setInterval(function(){
+
+          snake.move.continue(snake.move.step);
+
+        },1000 / snake.settings.speed);
 
       },
 
       step : function(x,y){
 
-        var tail = snake.body.shift();
+        if(snake.currentGrow == 0){
 
-        snake.boardContext.fillStyle = snake.settings.backgroundColor;
+          var tail = snake.body.shift();
 
-        snake.boardContext.fillRect(tail[0],tail[1],snake.settings.bodySize,snake.settings.bodySize);
+          snake.boardContext.fillStyle = snake.settings.backgroundColor;
+
+          snake.boardContext.fillRect(tail[0],tail[1],snake.settings.bodySize,snake.settings.bodySize);
+
+        } else {
+
+          snake.currentGrow--;
+
+        }
 
         var head = snake.body[snake.body.length - 1];
 
@@ -115,7 +131,7 @@ $(document).ready(function(){
         var alive = snake.check(head);
 
         if (alive){
-  
+
           snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
 
         }
@@ -158,7 +174,7 @@ $(document).ready(function(){
 
       grow : function(){
 
-
+        snake.currentGrow += snake.settings.growCount;
 
       }
 
@@ -188,7 +204,33 @@ $(document).ready(function(){
 
     placeApple : function(){
 
+      function getPos(){
 
+        var xPos = Math.floor(Math.random() * snake.settings.boardSize / snake.settings.bodySize) * snake.settings.bodySize;
+
+        var yPos = Math.floor(Math.random() * snake.settings.boardSize / snake.settings.bodySize) * snake.settings.bodySize;
+
+        return [xPos,yPos];
+
+      }
+
+      var pos = getPos();
+
+      var locationColor = rgb2hex( snake.boardContext.getImageData(pos[0],pos[1],1,1).data );
+
+      while (locationColor == snake.settings.wallColor || locationColor == snake.settings.snakeColor){
+
+        pos = getPos();
+
+        locationColor = rgb2hex( snake.boardContext.getImageData(pos[0],pos[1],1,1) );
+
+      }
+
+      snake.settings.boardContext.fillStyle = snake.settings.appleColor;
+
+      snake.settings.boardContext.fillRect(pos[0],pos[1],snake.settings.bodySize,snake.settings.bodySize);
+
+      snake.settings.boardContext.fillStyle = snake.settings.snakeColor;
 
     }
 
@@ -204,13 +246,11 @@ $(document).ready(function(){
 
     snake.generate();
 
-    snake.placeApple();
-
   });
 
   snake.listenTo(siren,"snake-got-apple", function(snakeSize){
 
-    snake.grow();
+    snake.move.grow();
 
     snake.placeApple();
 
