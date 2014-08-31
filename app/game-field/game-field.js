@@ -2,56 +2,43 @@ $(document).ready(function(){
 
   var snake = {
 
-    boardCanvas : undefined,
+    boardContext : undefined,
 
     settings : {},
 
-    head : [0,0],
-
-    tail : [0,0],
-
-    bodySize : 50,
+    body : [],
 
     currentDirection : 40,
 
+    intervalID : undefined,
+
     generate : function(){
-
-      snake.boardCanvas = $('#game-board');
-
-      snake.boardCanvas.attr({
-
-        width : snake.settings.boardSize * 100,
-
-        height : snake.settings.boardSize * 100
-
-      });
-
-      snake.boardContext = snake.boardCanvas[0].getContext('2d');
-
-      snake.boardContext.clearRect(0,0,snake.settings.boardSize * 100,snake.settings.boardSize * 100);
 
       snake.boardContext.fillStyle="#00FF00";
 
       _.each(_.range(snake.settings.snakeSize),function(value){
 
-        snake.boardContext.fillRect(10,10 + value * snake.bodySize,snake.bodySize,snake.bodySize);
+        var blockPosition = snake.settings.startingPos[1] + value * snake.settings.bodySize;
 
-        if(value == 0){snake.tail = [10,10 + value * snake.bodySize]}
-        else if(value == snake.settings.snakeSize - 1){snake.head = [10,10 + value * snake.bodySize]}
+        snake.boardContext.fillRect(snake.settings.startingPos[0],blockPosition,snake.settings.bodySize,snake.settings.bodySize);
+
+        snake.body.push([snake.settings.startingPos[0],blockPosition]);
 
       });
-
-      snake.head = [10,110];
-
-      snake.tail = [10,10];
-
-      snake.move.down();
 
       $(document).keydown(function(e){
 
-        snake.turn(e.which);
+        if(e.which >= 37 && e.which <= 40){
+
+          e.preventDefault();
+
+          snake.move.turn(e.which);
+
+        }
 
       });
+
+      snake.move.start(snake.intervalID);
 
     },
 
@@ -63,35 +50,101 @@ $(document).ready(function(){
 
     move : {
 
-      down : function(){
+      continue : function(){
 
-        setTimeout(function(){
+        switch(snake.currentDirection){
 
-          snake.boardContext.clearRect(snake.tail[0],snake.tail[1],snake.bodySize,snake.bodySize);
+          case 37:
 
-          snake.tail = [snake.tail[0],snake.tail[1] + snake.bodySize];
+            snake.move.step(-1,0);
+            break;
 
-          snake.head = [snake.head[0],snake.head[1] + snake.bodySize];
+          case 38:
 
-          snake.boardContext.fillRect(snake.head[0],snake.head[1],50,50);
+            snake.move.step(0,-1);
+            break;
 
-          if(snake.currentDirection == 40){snake.move.down();}
+          case 39:
 
-        },snake.settings.speed * 1000);
+            snake.move.step(1,0);
+            break;
+
+          case 40:
+
+            snake.move.step(0,1);
+            break;
+
+        }
+
+      },
+
+      start : function(intervalID){
+
+        if(intervalID){
+
+          clearInterval(intervalID);
+
+        }
+
+        snake.intervalID = setInterval(snake.move.continue,snake.settings.speed * 1000);
+
+      },
+
+      step : function(x,y){
+
+        var tail = snake.body.shift();
+
+        snake.boardContext.clearRect(tail[0],tail[1],snake.settings.bodySize,snake.settings.bodySize);
+
+        var head = snake.body[snake.body.length - 1];
+
+        snake.body.push([head[0] + x*snake.settings.bodySize,head[1] + y*snake.settings.bodySize]);
+
+        head = snake.body[snake.body.length - 1];
+
+        snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
+
+      },
+
+      isOpposite : function(direction){
+
+        if(direction + snake.currentDirection == 77){
+
+          return true;
+
+        }
+
+        return false;
+
+      },
+
+      reverseDirection : function(){
+
+        var holder = snake.body[snake.body.length - 1].slice();
+
+        snake.body[snake.body.length - 1] = snake.body[0].slice();
+
+        snake.body[0] = holder;
+
+      },
+
+      turn : function(direction){
+
+        if(snake.move.isOpposite(direction)){
+
+          snake.move.reverseDirection();
+
+        }
+
+        snake.currentDirection = direction;
+
+      },
+
+      grow : function(){
+
+
 
       }
-
-    },
-
-    turn : function(){
-
-
-
-    },
-
-    grow : function(){
-
-
 
     },
 
@@ -116,6 +169,8 @@ $(document).ready(function(){
   snake.listenTo(siren,"create-snake", function(gameSettings){
 
     snake.settings = gameSettings;
+
+    snake.boardContext = gameSettings.boardContext;
 
     snake.generate();
 
