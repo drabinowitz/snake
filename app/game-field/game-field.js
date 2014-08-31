@@ -140,7 +140,7 @@ $(document).ready(function(){
 
       isOpposite : function(direction){
 
-        if( direction + snake.currentDirection == 76 || direction + snake.currentDirection == 78 ){
+        if( (direction + snake.currentDirection == 76 || direction + snake.currentDirection == 78) && snake.currentDirection != direction ){
 
           return true;
 
@@ -152,11 +152,7 @@ $(document).ready(function(){
 
       reverseDirection : function(){
 
-        var holder = snake.body[snake.body.length - 1].slice();
-
-        snake.body[snake.body.length - 1] = snake.body[0].slice();
-
-        snake.body[0] = holder;
+        snake.body.reverse();
 
       },
 
@@ -166,9 +162,13 @@ $(document).ready(function(){
 
           snake.move.reverseDirection();
 
-        }
+          snake.currentDirection = direction;
 
-        snake.currentDirection = direction;
+        } else if (snake.currentDirection != direction){
+
+          snake.currentDirection = direction;
+          
+        }
 
       },
 
