@@ -17,6 +17,10 @@ $(document).ready(function(){
       game.settings.boardContext = game.settings.boardCanvas[0].getContext('2d');
 
       game.settings.boardContext.clearRect(0,0,game.settings.boardSize * 100,game.settings.boardSize * 100);
+      
+      game.settings.boardContext.fillStyle=game.settings.backgroundColor;
+
+      game.settings.boardContext.fillRect(0,0,game.settings.boardSize * 100,game.settings.boardSize * 100);
 
     },
 
@@ -26,6 +30,10 @@ $(document).ready(function(){
 
       boardContext : undefined,
 
+      backgroundColor : "#B85C00",
+
+      wallColor : '#000000',
+
       startingPos : [100,100],
 
       speed : 1,
@@ -34,7 +42,11 @@ $(document).ready(function(){
 
       snakeSize : 3,
 
-      bodySize : 20
+      snakeColor : "#00FF00",
+
+      bodySize : 20,
+
+      appleColor : '#FF0000'
 
     }
 

@@ -16,7 +16,7 @@ $(document).ready(function(){
 
       snake.destroy();
 
-      snake.boardContext.fillStyle="#00FF00";
+      snake.boardContext.fillStyle=snake.settings.snakeColor;
 
       _.each(_.range(snake.settings.snakeSize),function(value){
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
 
       snake.currentDirection = 40;
 
-      $document.off('keydown');
+      $(document).off('keydown');
 
     },
 
@@ -100,15 +100,25 @@ $(document).ready(function(){
 
         var tail = snake.body.shift();
 
-        snake.boardContext.clearRect(tail[0],tail[1],snake.settings.bodySize,snake.settings.bodySize);
+        snake.boardContext.fillStyle = snake.settings.backgroundColor;
+
+        snake.boardContext.fillRect(tail[0],tail[1],snake.settings.bodySize,snake.settings.bodySize);
 
         var head = snake.body[snake.body.length - 1];
+
+        snake.boardContext.fillStyle = snake.settings.snakeColor;
 
         snake.body.push([head[0] + x*snake.settings.bodySize,head[1] + y*snake.settings.bodySize]);
 
         head = snake.body[snake.body.length - 1];
 
-        snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
+        var alive = snake.check(head);
+
+        if (alive){
+  
+          snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
+
+        }
 
       },
 
@@ -154,11 +164,25 @@ $(document).ready(function(){
 
     },
 
-    check : function(){
+    check : function(head){
 
-      siren.trigger("snake-got-apple",snake.size);
+      var squareColor = rgb2hex( snake.boardContext.getImageData(head[0],head[1],1,1).data );
 
-      siren.trigger("snake-died")
+      if(squareColor == snake.settings.appleColor){
+
+        siren.trigger("snake-got-apple",snake.size);
+
+        return true;
+        
+      } else if (squareColor == snake.settings.snakeColor || squareColor == snake.settings.wallColor ){
+
+        siren.trigger("snake-died");
+
+        return false;
+              
+      }
+
+      return true;
 
     },
 
