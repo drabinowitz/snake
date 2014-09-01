@@ -186,7 +186,7 @@ $(document).ready(function(){
 
       if(squareColor == snake.settings.appleColor){
 
-        siren.trigger("snake-got-apple",snake.size);
+        siren.trigger("snake-got-apple",snake.body.length);
 
         return true;
         

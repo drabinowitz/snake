@@ -1,18 +1,18 @@
 $(document).ready(function(){
 
-  var score = {
+  var score = new Backbone.Model;
 
-    value : 0,
+  score.set({
 
-    step : 1
+    value : undefined
 
-  };
+  });
 
-  _.extend(score, Backbone.Events);
+  score.step = 1;
 
   score.listenTo(siren,"reset-score", function(gameSettings){
 
-    score.value = 0;
+    score.set({value : 0});
 
     score.step = Math.floor( gameSettings.speed * 20 / gameSettings.boardSize );
 
@@ -20,11 +20,13 @@ $(document).ready(function(){
 
   score.listenTo(siren,"snake-got-apple", function(snakeSize){
 
-    score.value += score.step + snakeSize;
+    var val = score.get("value");
+
+    score.set({value : val + score.step + snakeSize});
 
   });
 
-  score.listenTo(siren,"change:value", function(model,value){
+  score.on("change:value", function(model,value){
 
     $('span.current-score.value').text(value);
 
