@@ -192,6 +192,8 @@ $(document).ready(function(){
         
       } else if (squareColor == snake.settings.snakeColor || squareColor == snake.settings.wallColor ){
 
+        snake.destroy();
+
         siren.trigger("snake-died");
 
         return false;

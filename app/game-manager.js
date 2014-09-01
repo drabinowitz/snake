@@ -24,6 +24,12 @@ $(document).ready(function(){
 
     },
 
+    toggleOverlay : function(){
+
+      $('.game-overlay').toggleClass('hidden');
+
+    },
+
     settings : {
 
       boardCanvas : undefined,
@@ -56,7 +62,9 @@ $(document).ready(function(){
 
   _.extend(game, Backbone.Events);
 
-  game.listenTo(siren,"new-game", function(){
+  $('.new-game').click(function(){
+
+    game.toggleOverlay();
 
     game.generateBoard();
 
@@ -66,15 +74,9 @@ $(document).ready(function(){
 
   });
 
-  $('.new-game').click(function(){
-
-    siren.trigger("new-game");
-
-  });
-
   game.listenTo(siren,"snake-died", function(){
 
-    siren.trigger("new-game");
+    game.toggleOverlay();
 
   });
 

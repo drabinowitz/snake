@@ -1,5 +1,39 @@
+.hidden{
+
+  display: none;
+
+}
+
+.game-field{
+
+  width: 300px;
+
+  height: 300px;
+
+  position: relative;
+
+}
+
+#game-board,.game-overlay{
+
+  width: 300px;
+
+  height: 300px;
+
+  position: absolute;
+
+}
+
 #game-board{
 
   border: 1px solid black;
+
+}
+
+.game-overlay{
+
+  background-color: grey;
+
+  z-index: 2;
 
 }
