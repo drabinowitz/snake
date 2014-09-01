@@ -1,0 +1,19 @@
+header.gameInfo {
+
+  margin: 13px;
+
+}
+
+a.header-link{
+
+  text-decoration: none;
+
+  color: rgb(67, 101, 209);
+
+}
+
+a.view-source {
+  
+  float: right;
+
+}

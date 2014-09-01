@@ -4,36 +4,42 @@
   <meta charset="UTF-8">
   <title>Snake Game!</title>
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
+  <link rel="stylesheet" href="container.css">
+  <link rel="stylesheet" href="navigation-bar.css">
   <link rel="stylesheet" href="game-field/game-field.css">
 </head>
 <body>
-  
-  <header class="gameInfo">
 
-    <a class="about-me" href="https://github.com/drabinowitz">Aboute Me</a>
-
-    <a class="view-source" href="https://github.com/drabinowitz/snake">View Source</a>
+  <div class="container">
     
-  </header>
+    <header class="gameInfo">
 
-  <div class="game-hud">
+      <a class="header-link about-me" href="https://github.com/drabinowitz">About Me</a>
 
-    <div class="score-keeper">
-
-      <p class="current-score">Current Score: <span class="current-score value"></span></p>
+      <a class="header-link view-source" href="https://github.com/drabinowitz/snake">View Source</a>
       
+    </header>
+
+    <div class="game-hud">
+
+      <div class="score-keeper">
+
+        <p class="current-score">Current Score: <span class="current-score value"></span></p>
+        
+      </div>
+
+      <button class="new-game">New Game</button>
+
     </div>
 
-    <button class="new-game">New Game</button>
+    <div class="game-field">
 
-  </div>
+      <canvas id="game-board" width="300" height="300">
+        Please try viewing in Google Chrome
+      </canvas>
+    
+    </div>
 
-  <div class="game-field">
-
-    <canvas id="game-board" width="300" height="300">
-      Please try viewing in Google Chrome
-    </canvas>
-  
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
