@@ -1,17 +1,27 @@
+html,body,.container {
+
+  height: 100%;
+
+  width: 100%;
+
+}
+
 body {
 
-  background-color: rgb(45,45,45,0.8);
+  background-color: rgba(125, 113, 165, 1);
 
 }
 
 .container{
 
   background-color: white;
+  
+  max-width: 750px;
+  
+  margin: auto;
+  
+  padding: 10px 0px;
 
-  width:100%;
-
-  max-width:750px;
-
-  margin:auto
+  box-sizing: border-box;
 
 }

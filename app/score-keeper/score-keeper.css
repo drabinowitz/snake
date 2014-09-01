@@ -1,0 +1,15 @@
+p.current-score {
+  
+  margin: 19px auto;
+  
+  display: block;
+  
+  text-align: center;
+  
+  font-size: 22px;
+  
+  font-family: serif;
+  
+  color: rgba(30, 30, 30, 0.82);
+
+}

@@ -36,13 +36,13 @@ $(document).ready(function(){
 
       boardContext : undefined,
 
-      backgroundColor : "#B85C00",
+      backgroundColor : "#b85c00",
 
       wallColor : '#000000',
 
-      startingPos : [100,100],
+      startingPos : [0,140],
 
-      speed : 3,
+      speed : 5,
 
       boardSize : 300,
 

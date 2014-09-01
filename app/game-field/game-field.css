@@ -12,6 +12,8 @@
 
   position: relative;
 
+  margin: auto;
+
 }
 
 #game-board,.game-overlay{
@@ -26,14 +28,16 @@
 
 #game-board{
 
-  border: 1px solid black;
+  border: 20px solid rgb(37, 37, 37);
 
 }
 
 .game-overlay{
 
-  background-color: grey;
+  background-color: rgba(199, 199, 199, 1);
 
   z-index: 2;
+
+  border: 20px solid rgba(199, 199, 199, 1);
 
 }

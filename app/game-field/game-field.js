@@ -44,11 +44,13 @@ $(document).ready(function(){
 
       snake.placeApple();
 
-      snake.move.start(snake.intervalID);
+      snake.move.start();
 
     },
 
     destroy : function(){
+
+      clearInterval(snake.intervalID);
 
       snake.body = [];
 
@@ -88,13 +90,7 @@ $(document).ready(function(){
 
       },
 
-      start : function(intervalID){
-
-        if(intervalID){
-
-          clearInterval(intervalID);
-
-        }
+      start : function(){
 
         snake.intervalID = setInterval(function(){
 
@@ -128,13 +124,11 @@ $(document).ready(function(){
 
         head = snake.body[snake.body.length - 1];
 
-        var alive = snake.check(head);
+        var result = snake.check(head);
 
-        if (alive){
+        snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
 
-          snake.boardContext.fillRect(head[0],head[1],snake.settings.bodySize,snake.settings.bodySize);
-
-        }
+        snake.handle(result);
 
       },
 
@@ -186,21 +180,36 @@ $(document).ready(function(){
 
       if(squareColor == snake.settings.appleColor){
 
-        siren.trigger("snake-got-apple",snake.body.length);
-
-        return true;
+        return "apple";
         
       } else if (squareColor == snake.settings.snakeColor || squareColor == snake.settings.wallColor ){
 
-        snake.destroy();
-
-        siren.trigger("snake-died");
-
-        return false;
+        return "died";
               
       }
 
-      return true;
+    },
+
+    handle : function(result){
+
+      switch(result){
+
+        case "apple":
+
+          siren.trigger("snake-got-apple",snake.body.length);
+
+          break;
+
+        case "died":
+
+          snake.destroy();
+
+          siren.trigger("snake-died");
+
+          break;
+
+
+      }
 
     },
 
