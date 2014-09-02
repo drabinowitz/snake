@@ -159,6 +159,80 @@ $(document).ready(function(){
 
   });
 
+  $('.snake-size-button').click(function(event){
+
+    var target = $(event.target);
+
+    $('.snake-size-button').removeClass('selected');
+
+    target.addClass('selected');
+
+    var targetSize = target.text().toLowerCase();
+
+    switch(targetSize){
+
+      case "small":
+
+        game.settings.snakeSize = 3;
+        break;
+
+      case "medium":
+
+        game.settings.snakeSize = 5;
+        break;
+
+      case "large":
+
+        game.settings.snakeSize = 7;
+        break;
+
+    }
+
+    if( $('.game-overlay').hasClass('hidden') ){
+
+      siren.trigger('snake-died');
+
+    }
+
+  });
+
+  $('.snake-speed-button').click(function(event){
+
+    var target = $(event.target);
+
+    $('.snake-speed-button').removeClass('selected');
+
+    target.addClass('selected');
+
+    var targetSize = target.text().toLowerCase();
+
+    switch(targetSize){
+
+      case "slow":
+
+        game.settings.speed = 3;
+        break;
+
+      case "medium":
+
+        game.settings.speed = 5;
+        break;
+
+      case "fast":
+
+        game.settings.speed = 7;
+        break;
+
+    }
+
+    if( $('.game-overlay').hasClass('hidden') ){
+
+      siren.trigger('snake-died');
+
+    }
+
+  });
+
   game.listenTo(siren,"new-game", function(){
 
     game.toggleOverlay();

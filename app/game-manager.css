@@ -1,4 +1,4 @@
-button.board-size-button.selected {
+button.game-options-button.selected {
 
   background-color: rgb(255, 147, 86);
 
@@ -52,7 +52,7 @@ h3.countdown {
 
 }
 
-div.board-sizer {
+div.game-options {
   
   display: inline-block;
 
@@ -60,7 +60,7 @@ div.board-sizer {
 
 }
 
-p.board-sizer-logo {
+p.game-options-logo {
   
   margin: 2px 0px;
   
@@ -68,7 +68,7 @@ p.board-sizer-logo {
 
 }
 
-button.board-size-button {
+button.game-options-button {
   
   background-color: rgb(179, 179, 179);
   
