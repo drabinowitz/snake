@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake Game!</title>
+
+  <link rel="stylesheet" href="./_assets/combined-e9a209d7.css"/>
+
+</head>
+<body>
+
+  <div class="container">
+    
+    <header class="gameInfo">
+
+      <a class="header-link about-me" href="https://github.com/drabinowitz" target="_blank">About Me</a>
+
+      <a class="header-link view-source" href="https://github.com/drabinowitz/snake" target="_blank">View Source</a>
+      
+    </header>
+
+    <h1 class="game-title">SNAKE</h1>
+
+    <div class="game-hud">
+
+      <div class="game-options board-sizer">
+
+        <p class="game-options-logo">Board Size</p>
+
+        <div class="game-options-buttons board-sizer-buttons">
+
+          <button class="game-options-button board-size-button">Small</button>
+
+          <button class="game-options-button board-size-button selected">Medium</button>
+          
+          <button class="game-options-button board-size-button">Large</button>
+        
+        </div>
+      
+      </div>
+
+      <div class="game-options snake-sizer">
+
+        <p class="game-options-logo">Starting Snake Size</p>
+
+        <div class="game-options-buttons snake-sizer-buttons">
+
+          <button class="game-options-button snake-size-button selected">Small</button>
+
+          <button class="game-options-button snake-size-button">Medium</button>
+          
+          <button class="game-options-button snake-size-button">Large</button>
+        
+        </div>
+      
+      </div>
+
+      <div class="game-options snake-speeder">
+
+        <p class="game-options-logo">Snake Size</p>
+
+        <div class="game-options-buttons snake-speeder-buttons">
+
+          <button class="game-options-button snake-speed-button">Slow</button>
+
+          <button class="game-options-button snake-speed-button selected">Medium</button>
+          
+          <button class="game-options-button snake-speed-button">Fast</button>
+        
+        </div>
+      
+      </div>
+
+      <div class="score-keeper">
+
+        <p class="current-score">Current Score: <span class="current-score value"></span></p>
+        
+      </div>
+
+    </div>
+
+    <div class="game-field medium-field">
+
+      <div class="game-overlay medium">
+
+        <button class="new-game">New Game</button>
+
+       </div>
+
+       <h3 class="countdown hidden">3</h3>
+
+      <canvas id="game-board" width="300" height="300">
+        Please try viewing in Google Chrome
+      </canvas>
+    
+    </div>
+
+  </div>
+
+  <script src="./_assets/combined-04330487.js"></script>
+
+</body>
+</html>
