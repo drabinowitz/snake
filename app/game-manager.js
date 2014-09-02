@@ -68,7 +68,7 @@ $(document).ready(function(){
 
       startingPos : [140,0],
 
-      speed : 5,
+      speed : 3,
 
       boardSize : 300,
 

@@ -231,7 +231,7 @@ $(document).ready(function(){
 
         pos = getPos();
 
-        locationColor = rgb2hex( snake.boardContext.getImageData(pos[0],pos[1],1,1) );
+        locationColor = rgb2hex( snake.boardContext.getImageData(pos[0],pos[1],1,1).data );
 
       }
 
