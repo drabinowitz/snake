@@ -4,6 +4,7 @@ var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var usemin = require('gulp-usemin');
+var rev = require('gulp-rev');
 
 gulp.task('copy-html-files', function() {
   gulp.src(['./app/**/*.html', '!./app/index.html'], {base: './app'})
@@ -22,6 +23,12 @@ gulp.task('usemin', function() {
 gulp.task('connect', function() {
   connect.server({
     root: 'app/'
+  });
+});
+
+gulp.task('production', function() {
+  connect.server({
+    root: 'build/'
   });
 });
 
