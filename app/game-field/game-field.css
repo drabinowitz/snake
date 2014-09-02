@@ -6,9 +6,9 @@
 
 .small{
 
-  width: 100px;
+  width: 200px;
 
-  height: 100px;
+  height: 200px;
 
 }
 
@@ -22,9 +22,33 @@
 
 .large{
 
-  width: 500px;
+  width: 400px;
 
-  height: 500px;
+  height: 400px;
+
+}
+
+.small-field{
+
+  width: 240px;
+
+  height: 240px;
+
+}
+
+.medium-field{
+
+  width: 340px;
+
+  height: 340px;
+
+}
+
+.large-field{
+
+  width: 440px;
+
+  height: 440px;
 
 }
 

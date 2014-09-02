@@ -6,13 +6,13 @@ $(document).ready(function(){
 
       game.settings.boardCanvas = $('#game-board');
 
-      game.settings.boardCanvas.attr({
+/*      game.settings.boardCanvas.attr({
 
         width : game.settings.boardSize,
 
         height : game.settings.boardSize
 
-      });
+      });*/
 
       game.settings.boardContext = game.settings.boardCanvas[0].getContext('2d');
 
@@ -82,7 +82,7 @@ $(document).ready(function(){
 
       case "small":
 
-        game.settings.boardSize = 100;
+        game.settings.boardSize = 200;
         break;
 
       case "medium":
@@ -92,20 +92,30 @@ $(document).ready(function(){
 
       case "large":
 
-        game.settings.boardSize = 500;
+        game.settings.boardSize = 400;
         break;
 
     }
 
       game.settings.startingPos[0] = Math.floor( game.settings.boardSize / ( 2 * game.settings.bodySize ) ) * game.settings.bodySize;
 
-      $('.game-field,.game-overlay').removeClass('small').
+      $('.game-overlay').removeClass('small').
 
       removeClass('medium').
 
       removeClass('large').
 
       addClass(targetSize);
+
+      $('.game-field').removeClass('small-field').
+
+      removeClass('medium-field').
+
+      removeClass('large-field').
+
+      addClass(targetSize + "-field");
+
+      
 
       $('#game-board').attr({
 
