@@ -40,7 +40,7 @@ $(document).ready(function(){
 
       wallColor : '#000000',
 
-      startingPos : [0,140],
+      startingPos : [140,0],
 
       speed : 5,
 
@@ -63,6 +63,67 @@ $(document).ready(function(){
   _.extend(game, Backbone.Events);
 
   $('.new-game').click(function(){
+
+    siren.trigger("new-game");
+
+  });
+
+  $('.board-size-button').click(function(event){
+
+    var target = $(event.target);
+
+    $('.board-size-button').removeClass('selected');
+
+    target.addClass('selected');
+
+    var targetSize = target.text().toLowerCase();
+
+    switch(targetSize){
+
+      case "small":
+
+        game.settings.boardSize = 100;
+        break;
+
+      case "medium":
+
+        game.settings.boardSize = 300;
+        break;
+
+      case "large":
+
+        game.settings.boardSize = 500;
+        break;
+
+    }
+
+      game.settings.startingPos[0] = Math.floor( game.settings.boardSize / ( 2 * game.settings.bodySize ) ) * game.settings.bodySize;
+
+      $('.game-field,.game-overlay').removeClass('small').
+
+      removeClass('medium').
+
+      removeClass('large').
+
+      addClass(targetSize);
+
+      $('#game-board').attr({
+
+        width : game.settings.boardSize,
+
+        height : game.settings.boardSize
+
+      });
+
+      if( $('.game-overlay').hasClass('hidden') ){
+
+        siren.trigger('snake-died');
+
+      }
+
+  });
+
+  game.listenTo(siren,"new-game", function(){
 
     game.toggleOverlay();
 

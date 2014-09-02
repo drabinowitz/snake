@@ -24,6 +24,22 @@
 
     <div class="game-hud">
 
+      <div class="board-sizer">
+
+        <h3 class="board-sizer-logo">Select Board Size</h3>
+
+        <div class="board-sizer-buttons">
+
+          <button class="board-size-button">Small</button>
+
+          <button class="board-size-button selected">Medium</button>
+          
+          <button class="board-size-button">Large</button>
+        
+        </div>
+      
+      </div>
+
       <div class="score-keeper">
 
         <p class="current-score">Current Score: <span class="current-score value"></span></p>
@@ -32,15 +48,15 @@
 
     </div>
 
-    <div class="game-field">
+    <div class="game-field medium">
 
-      <div class="game-overlay">
+      <div class="game-overlay medium">
 
         <button class="new-game">New Game</button>
 
        </div>
 
-      <canvas id="game-board">
+      <canvas id="game-board" width="300" height="300">
         Please try viewing in Google Chrome
       </canvas>
     

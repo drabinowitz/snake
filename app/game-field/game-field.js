@@ -202,8 +202,6 @@ $(document).ready(function(){
 
         case "died":
 
-          snake.destroy();
-
           siren.trigger("snake-died");
 
           break;
@@ -264,6 +262,12 @@ $(document).ready(function(){
     snake.move.grow();
 
     snake.placeApple();
+
+  });
+
+  snake.listenTo(siren,"snake-died", function(){
+
+    snake.destroy();
 
   });
 

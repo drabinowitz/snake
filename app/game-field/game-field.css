@@ -4,11 +4,31 @@
 
 }
 
-.game-field{
+.small{
+
+  width: 100px;
+
+  height: 100px;
+
+}
+
+.medium{
 
   width: 300px;
 
   height: 300px;
+
+}
+
+.large{
+
+  width: 500px;
+
+  height: 500px;
+
+}
+
+.game-field{
 
   position: relative;
 
@@ -17,10 +37,6 @@
 }
 
 #game-board,.game-overlay{
-
-  width: 300px;
-
-  height: 300px;
 
   position: absolute;
 
