@@ -17,3 +17,13 @@ a.view-source {
   float: right;
 
 }
+
+h1.game-title {
+  
+  text-align: center;
+  
+  color: rgb(81, 162, 81);
+  
+  font-family: serif;
+
+}
