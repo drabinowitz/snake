@@ -6,14 +6,6 @@ $(document).ready(function(){
 
       game.settings.boardCanvas = $('#game-board');
 
-/*      game.settings.boardCanvas.attr({
-
-        width : game.settings.boardSize,
-
-        height : game.settings.boardSize
-
-      });*/
-
       game.settings.boardContext = game.settings.boardCanvas[0].getContext('2d');
 
       game.settings.boardContext.clearRect(0,0,game.settings.boardSize,game.settings.boardSize);
@@ -27,6 +19,40 @@ $(document).ready(function(){
     toggleOverlay : function(){
 
       $('.game-overlay').toggleClass('hidden');
+
+    },
+
+    triggerCountdown : function(callback){
+
+      var countdown = $('.countdown');
+
+      countdown.removeClass('hidden');
+
+      function countingdown () {
+
+        setTimeout(function(){
+
+          if (countdown.text() > 1){
+
+            countdown.text( countdown.text() - 1 );
+
+            countingdown();
+
+          } else {
+
+            countdown.text( 3 );
+
+            countdown.addClass('hidden');
+
+            callback();
+
+          }
+
+        },1000);
+
+      }
+
+      countingdown();
 
     },
 
@@ -139,9 +165,13 @@ $(document).ready(function(){
 
     game.generateBoard();
 
-    siren.trigger("reset-score",game.settings);
+    game.triggerCountdown(function(){
 
-    siren.trigger("create-snake",game.settings);
+      siren.trigger("reset-score",game.settings)
+
+      siren.trigger("create-snake",game.settings);
+
+    });
 
   });
 
